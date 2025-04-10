@@ -22,12 +22,20 @@ public class Funcionalidade {
                 } else if (opcao == 2) {
                     pesquisaProd();
                 } else if (opcao == 3) {
-                   pesquisaForn();
+                   pesquisa();
                 }
             }while(opcao != 4);
 
     }
 
+    private void pesquisa(){
+        String aux ="";
+        Fornecedor fornecedor = pesquisaForn();
+        if(fornecedor !=null){
+            aux+= "Fornecedor: "+fornecedor.getNome()+ "\n CNPJ: "+fornecedor.getCnpj();
+            showMessageDialog(null,aux);
+        }
+    }
     private void cadastrarProdutos(){
         String nome;
         double valor;
@@ -54,17 +62,17 @@ public class Funcionalidade {
         return fornecedor[n-1];
     }
 
-    private Produto pesquisaProd() {
+    private void pesquisaProd() {
         String aux = "Produto não encontrado";
         String nome = showInputDialog("Informe o nome do produto:");
 
         for (int l = 0; l < i; l++) {
             if (produto[l].getNome().equalsIgnoreCase(nome)) {
-                aux = "Nome produto: " + nome + "\nValor:" + produto[l].getValor() + "\nFornecedor" + produto[l].getFornecedor().getNome();
+                aux = "Nome produto: " + nome + "\nValor:" + produto[l].getValor() + "\nFornecedor: " + produto[l].getFornecedor().getNome();
 
             }
         }
-        return aux;
+        showMessageDialog(null,aux);
     }
 
     private Fornecedor pesquisaForn(){
